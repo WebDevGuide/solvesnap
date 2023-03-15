@@ -73,65 +73,65 @@
 
   
 
-  <!-- chatGPT -->
-  <script>
-    const API_KEY = "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";
-
-const form = document.querySelector('form');
-form.addEventListener('submit', (event) => {
-  event.preventDefault(); // prevent the form from submitting via HTTP
-  const message = document.querySelector('#search-box').value;
-  document.querySelector("#chat-log").textContent = '';
-  sendToChatGPT(message);
-});
-
-function sendToChatGPT(message) {
-  document.querySelector("#chat-log").textContent = '';
-  document.querySelector('#search-box').textContent = '';
-  const importP = document.querySelector('.importP');
-  const importB = document.querySelector('.importB');
-  const loader = document.querySelector('.lds-ellipsis');
-  loader.style.display = 'inline-block';
-  importP.style.display = 'none';
-  importB.style.display = 'none';
-
-  fetch(`https://api.openai.com/v1/engines/text-davinci-003/completions`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-    },
-    body: JSON.stringify({
-      'prompt': `Human: ${message}\nAI:`,
-      'temperature': 0.9,
-      'max_tokens': 150,
-      'top_p': 1,
-      'frequency_penalty': 0,
-      'presence_penalty': 0.6,
-      'stop': [' Human:', ' AI:'],
-    }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    const chatbotResponse = data.choices[0].text.trim();
-    displayChatbotResponse(chatbotResponse);
-  })
-  .catch(error => console.error(error));
-}
-
-
-function displayChatbotResponse(chatbotResponse) {
-  const chatLog = document.querySelector('#chat-log');
-  const chatbotMessage = document.createElement('p');
-  const loader = document.querySelector('.lds-ellipsis');
-  chatbotMessage.textContent = `${chatbotResponse}`;
-  chatLog.appendChild(chatbotMessage);
-  loader.style.display = 'none';
-        // Get the input element and set its value to empty
-        const input = document.getElementById('search-box');
-    input.value = '';
-}
-
-  </script>
+     <!-- chatGPT -->
+    <script>
+      const API_KEY = "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";
+   
+   document.querySelector('.question').addEventListener('submit', (event) => {
+     event.preventDefault(); // prevent the form from submitting via HTTP
+     const message = document.querySelector('#search-box').value;
+     document.querySelector("#chat-log").textContent = '';
+     console.log("Step 1");
+     sendToChatGPT(message);
+     document.querySelector("#chat-log").textContent = '';
+     document.querySelector('#search-box').textContent = '';
+     const importP = document.querySelector('.importP');
+     const importB = document.querySelector('.importB');
+     const loader = document.querySelector('.lds-ellipsis');
+     loader.style.display = 'inline-block';
+     importP.style.display = 'none';
+     importB.style.display = 'none';
+   
+   });
+   
+   function sendToChatGPT(message) {
+     fetch(`https://api.openai.com/v1/engines/text-davinci-003/completions`, {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+         'Authorization': `Bearer ${API_KEY}`,
+       },
+       body: JSON.stringify({
+         'prompt': `Human: ${message}\nAI:`,
+         'temperature': 0.9,
+         'max_tokens': 150,
+         'top_p': 1,
+         'frequency_penalty': 0,
+         'presence_penalty': 0.6,
+         'stop': [' Human:', ' AI:'],
+       }),
+     })
+     .then(response => response.json())
+     .then(data => {
+       const chatbotResponse = data.choices[0].text.trim();
+       displayChatbotResponse(chatbotResponse);
+     })
+     .catch(error => console.error(error));
+   }
+   
+   function displayChatbotResponse(chatbotResponse) {
+     const chatLog = document.querySelector('#chat-log');
+     const chatbotMessage = document.createElement('p');
+     const loader = document.querySelector('.lds-ellipsis');
+     chatbotMessage.textContent = `${chatbotResponse}`;
+     chatLog.appendChild(chatbotMessage);
+     loader.style.display = 'none';
+         // Get the input element and set its value to empty
+         const input = document.getElementById('search-box');
+     input.value = '';
+   }
+   
+   
+     </script>
 </body>
 </html>
