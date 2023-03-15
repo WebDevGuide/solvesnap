@@ -183,9 +183,8 @@ align-items: center;
     max-width: 30px;
     margin: 0 13px 0 0;
 }
-
 #chat-log p {
-    font-size: 100%;
+    font-size: 120%;
 }
 
 #chat-log {
